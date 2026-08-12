@@ -24,6 +24,11 @@ class MockFlightProvider implements FlightProvider {
   }
 }
 
-// Phase 2: class TravelpayoutsProvider implements FlightProvider { ... }
-// selected via import.meta.env.VITE_FLIGHT_PROVIDER
-export const flightProvider: FlightProvider = new MockFlightProvider()
+import { LiveFlightProvider } from './liveProvider'
+
+// VITE_FLIGHT_PROVIDER=travelpayouts activates the live provider, which hits
+// the /live/* Netlify Function (Travelpayouts proxy) and falls back to the
+// mock per-call whenever live data is unavailable.
+const mock = new MockFlightProvider()
+export const flightProvider: FlightProvider =
+  import.meta.env.VITE_FLIGHT_PROVIDER === 'travelpayouts' ? new LiveFlightProvider(mock) : mock

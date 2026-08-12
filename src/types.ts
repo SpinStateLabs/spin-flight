@@ -33,6 +33,10 @@ export interface Deal {
   strategyIds: string[]
   bookingSites: string[]
   expiresHours: number
+  /** Direct affiliate-tagged booking URL (live provider only). */
+  bookingUrl?: string
+  /** True when the price came from the live data API rather than the mock. */
+  live?: boolean
 }
 
 export interface PricePoint {

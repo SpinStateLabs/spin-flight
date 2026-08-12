@@ -29,8 +29,17 @@ export default function DealCard({ deal }: { deal: Deal }) {
         </div>
         <div className="text-right">
           <div className="text-2xl font-bold text-sky-400">${deal.price}</div>
-          <div className="text-xs text-slate-500 line-through">${deal.normalPrice}</div>
-          <div className="text-xs font-semibold text-emerald-400">−{pct}%</div>
+          {pct > 0 && (
+            <>
+              <div className="text-xs text-slate-500 line-through">${deal.normalPrice}</div>
+              <div className="text-xs font-semibold text-emerald-400">−{pct}%</div>
+            </>
+          )}
+          {deal.live && (
+            <span className="mt-1 inline-block rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+              ● live price
+            </span>
+          )}
         </div>
       </div>
 
@@ -44,7 +53,7 @@ export default function DealCard({ deal }: { deal: Deal }) {
         {deal.bookingSites.map((site) => (
           <a
             key={site}
-            href={buildBookingUrl(deal, site)}
+            href={site === 'Aviasales' && deal.bookingUrl ? deal.bookingUrl : buildBookingUrl(deal, site)}
             target="_blank"
             rel="noopener noreferrer sponsored"
             onClick={() => trackAffiliateClick(deal, site)}

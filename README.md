@@ -95,9 +95,23 @@ Play Store checklist:
 3. **Ads:** deliberately not included in v1 to protect the premium feel; AdMob can slot into the free
    tier later if EPC data justifies it.
 
+## Going live with real data
+
+The live-data plumbing is built and ships dark until configured:
+
+1. Create a free [Travelpayouts](https://www.travelpayouts.com) account and grab your **API token**
+   and **marker** (Tools → API).
+2. In Netlify → *Environment variables*, set `TRAVELPAYOUTS_TOKEN`, `TP_MARKER` (server-side) and
+   `VITE_FLIGHT_PROVIDER=travelpayouts`, `VITE_TP_MARKER` (build-time), then redeploy.
+3. Done: the `/live/*` function starts serving real cached fares (with affiliate-tagged booking
+   links), the Deals feed and Dates grid switch to live prices with a "● live price" chip, and any
+   failure falls back to the mock automatically. Price history stays simulated until we add our own
+   snapshot store.
+
 ## Phase 2 roadmap
 
-- [ ] Live prices: `TravelpayoutsProvider` implementing `FlightProvider` (free API + affiliate revenue)
+- [x] Live prices: `/live/*` Netlify Function (Travelpayouts proxy) + `LiveFlightProvider` fallback chain — needs only the token (above)
+- [ ] MCP `search_flight_deals`/`get_cheapest_dates` switch to live data once the token is validated
 - [ ] Affiliate deep links returned directly in MCP/JSON responses (tagged booking URLs per deal)
 - [ ] Real alerts: small backend (Supabase/Firebase) + push notifications via Capacitor
 - [ ] Stripe + Google Play Billing entitlements replacing the Pro stub
