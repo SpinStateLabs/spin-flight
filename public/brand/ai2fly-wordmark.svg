@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360">
+  <defs>
+    <linearGradient id="jet" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7dd3fc"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- icon -->
+  <g transform="translate(40 40)">
+    <rect width="280" height="280" rx="62" fill="#0f1b33"/>
+    <path d="M52 188 C 98 165, 164 132, 224 96" stroke="#1e3a5f" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <path d="M52 188 C 98 165, 164 132, 224 96" stroke="#38bdf8" stroke-width="8" stroke-linecap="round" fill="none" stroke-dasharray="5 15" opacity="0.9"/>
+    <g transform="translate(140 127) rotate(-18) scale(0.55)">
+      <path d="M-150 30 L150 -60 L30 96 L4 34 Z" fill="url(#jet)"/>
+      <path d="M4 34 L150 -60 L20 120 L8 62 Z" fill="#0ea5e9" opacity="0.85"/>
+      <path d="M-150 30 L150 -60 L-10 42 Z" fill="#bae6fd"/>
+    </g>
+    <circle cx="224" cy="96" r="9" fill="#38bdf8"/>
+    <circle cx="224" cy="96" r="16" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.45"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="380" y="212" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="800" fill="#0f1b33">Ai<tspan fill="#0ea5e9">2</tspan>Fly</text>
+  <text x="384" y="272" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="500" fill="#64748b" letter-spacing="2">THE AI-NATIVE FLIGHT DEAL ENGINE</text>
+</svg>

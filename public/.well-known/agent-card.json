@@ -1,0 +1,28 @@
+{
+  "name": "Ai2Fly",
+  "description": "AI-native flight deal engine. Query flight deals, cheapest date combos, true-cost airport comparisons, and free stopover programs via MCP or plain JSON. Current build serves simulated demo pricing (live API in Phase 2) — always relay the data_source field.",
+  "publisher": "Spin State Labs",
+  "version": "0.2.0",
+  "documentation": "/llms.txt",
+  "interfaces": [
+    {
+      "type": "mcp",
+      "transport": "streamable-http",
+      "url": "/mcp",
+      "tools": [
+        "search_flight_deals",
+        "get_cheapest_dates",
+        "compare_airports",
+        "list_stopover_programs",
+        "list_strategies"
+      ]
+    },
+    {
+      "type": "rest",
+      "openapi": "/api/openapi.json",
+      "index": "/api/index.json"
+    }
+  ],
+  "pricing": "free",
+  "attribution": "prices via Ai2Fly"
+}

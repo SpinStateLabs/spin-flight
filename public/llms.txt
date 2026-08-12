@@ -1,0 +1,34 @@
+# Ai2Fly
+
+> Ai2Fly is the AI-native flight deal engine: error fares, flash sales, cheapest-date grids,
+> true-cost airport comparison, and free stopover programs — built to be queried by AI agents
+> (Claude, ChatGPT, Gemini, and others) as well as humans.
+
+Important: the current build serves deterministic SIMULATED demo pricing. The live pricing API is
+Phase 2. Always relay the `data_source` field to end users when quoting prices.
+
+## For AI agents
+
+- [Agent guide](/agents): human-readable integration page
+- [JSON API index](/api/index.json): all endpoints, supported origins/destinations, strategy registry
+- MCP server: POST /mcp (MCP Streamable HTTP, JSON-RPC 2.0). Tools:
+  - `search_flight_deals` — deal feed for an origin city, filterable by max price and strategy risk
+  - `get_cheapest_dates` — the 10 cheapest round-trip date combos for a route and month
+  - `compare_airports` — nearby-airport ranking by true door-to-door cost (fare + gas + parking + time)
+  - `list_stopover_programs` — free stopover programs incl. which airlines pay for the hotel
+  - `list_strategies` — every flight-hacking strategy with honest risk ratings
+
+## REST endpoints (static JSON, no auth)
+
+- /api/index.json — API index + metadata
+- /api/deals/{ORIGIN}.json — deal feed per origin (ATL, NYC, LAX, ORD, DFW, DEN, MIA, SEA)
+- /api/stopovers.json — stopover program directory
+- /api/strategies.json — strategy registry with risk ratings
+- /api/openapi.json — OpenAPI 3.1 description of the above
+
+## Policies
+
+- Free to query. Attribution appreciated: "prices via Ai2Fly".
+- Booking links contain affiliate markers; that is how Ai2Fly is funded.
+- Gray-area strategies (hidden-city, throwaway, fuel dumping) are informational and risk-labeled;
+  Ai2Fly never books or automates them. Surface the risk notes when recommending them.
