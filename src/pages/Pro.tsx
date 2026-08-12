@@ -1,5 +1,12 @@
 import { useSettings } from '../hooks/useSettings'
 
+// Stripe Payment Links (Spin State Labs sandbox). Override with live-mode
+// links via env vars when the account goes live.
+const STRIPE_LINK_MONTHLY =
+  import.meta.env.VITE_STRIPE_LINK_MONTHLY ?? 'https://buy.stripe.com/test_fZu14ncCl55g4ZDeIy7EQ00'
+const STRIPE_LINK_YEARLY =
+  import.meta.env.VITE_STRIPE_LINK_YEARLY ?? 'https://buy.stripe.com/test_8x26oH0TD41c63H9oe7EQ01'
+
 const FREE = [
   'Deal feed with your enabled techniques',
   '2 tracked routes',
@@ -52,19 +59,32 @@ export default function Pro() {
               <li key={f}>★ {f}</li>
             ))}
           </ul>
-          <button
-            onClick={() => setPro(!isPro)}
-            className={`mt-6 w-full rounded-xl py-3 font-semibold transition ${
-              isPro
-                ? 'border border-slate-700 text-slate-300 hover:border-slate-500'
-                : 'bg-amber-500 text-slate-950 hover:bg-amber-400'
-            }`}
-          >
-            {isPro ? 'Manage subscription (demo: turn off)' : 'Start Pro — demo unlock'}
-          </button>
+          {isPro ? (
+            <button
+              onClick={() => setPro(false)}
+              className="mt-6 w-full rounded-xl border border-slate-700 py-3 font-semibold text-slate-300 transition hover:border-slate-500"
+            >
+              ★ Pro active — deactivate on this device
+            </button>
+          ) : (
+            <div className="mt-6 space-y-2">
+              <a
+                href={STRIPE_LINK_MONTHLY}
+                className="block w-full rounded-xl bg-amber-500 py-3 text-center font-semibold text-slate-950 transition hover:bg-amber-400"
+              >
+                Go Pro — $4.99/mo
+              </a>
+              <a
+                href={STRIPE_LINK_YEARLY}
+                className="block w-full rounded-xl border border-amber-500/50 py-3 text-center font-semibold text-amber-400 transition hover:bg-amber-500/10"
+              >
+                Yearly — $39 (save 35%)
+              </a>
+            </div>
+          )}
           <p className="mt-3 text-center text-[11px] text-slate-500">
-            Demo build: this toggles Pro locally. Production wires Stripe on web and Google Play Billing on
-            Android.
+            Secure checkout by Stripe (currently test mode — use card 4242 4242 4242 4242). Android will
+            use Google Play Billing.
           </p>
         </div>
       </div>

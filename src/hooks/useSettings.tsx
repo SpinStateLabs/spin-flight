@@ -1,4 +1,4 @@
-import { createContext, useContext, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, type ReactNode } from 'react'
 import { TECHNIQUES } from '../data/techniques'
 import { useLocalStorage } from './useLocalStorage'
 
@@ -19,9 +19,26 @@ const SettingsContext = createContext<Settings | null>(null)
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [homeCity, setHomeCity] = useLocalStorage('sf.homeCity', 'ATL')
   const [enabledTechniques, setEnabled] = useLocalStorage<string[]>('sf.techniques', defaultEnabled)
-  // Pro flag is a local stub; Phase 2 replaces it with Stripe (web) and
-  // Google Play Billing (Android) entitlement checks.
+  // Pro flag lives in localStorage. Stripe Payment Links redirect back with
+  // ?upgraded=pro after checkout, which flips it. This is convenience-grade
+  // gating for the static site — Phase 2 adds accounts + webhook-verified
+  // entitlements (and Google Play Billing on Android).
   const [isPro, setPro] = useLocalStorage('sf.pro', false)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('upgraded') === 'pro') {
+      setPro(true)
+      params.delete('upgraded')
+      const query = params.toString()
+      window.history.replaceState(
+        null,
+        '',
+        window.location.pathname + (query ? `?${query}` : '') + window.location.hash,
+      )
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const toggleTechnique = (id: string) =>
     setEnabled((prev) => (prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]))
