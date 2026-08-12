@@ -21,7 +21,7 @@ export default function Layout() {
           <NavLink to="/deals" className="flex items-center gap-2 font-bold text-lg tracking-tight">
             <img src="/plane.svg" alt="" className="h-7 w-7 rounded-lg" />
             <span>
-              Spin<span className="text-sky-400">Flight</span>
+              Ai<span className="text-sky-400">2</span>Fly
             </span>
           </NavLink>
 
@@ -86,10 +86,18 @@ export default function Layout() {
 
       <footer className="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
         <p>
-          SpinFlight by Spin State Labs · Prices are simulated demo data (live API coming in Phase 2).
+          Ai2Fly by Spin State Labs · Prices are simulated demo data (live API coming in Phase 2).
         </p>
         <p className="mt-1">
           Some techniques violate airline contracts of carriage — each carries its risk rating. Fly informed.
+        </p>
+        <p className="mt-1">
+          🤖 AI agent?{' '}
+          <NavLink to="/agents" className="text-sky-400 hover:underline">
+            Connect to Ai2Fly
+          </NavLink>{' '}
+          · <a href="/llms.txt" className="hover:underline">llms.txt</a> ·{' '}
+          <a href="/api/index.json" className="hover:underline">JSON API</a> · <code>/mcp</code>
         </p>
       </footer>
     </div>

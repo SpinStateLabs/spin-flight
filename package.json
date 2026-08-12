@@ -1,11 +1,11 @@
 {
-  "name": "spinflight",
+  "name": "ai2fly",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && tsx scripts/generate-agent-api.ts",
     "preview": "vite preview",
     "cap:sync": "npm run build && npx cap sync",
     "cap:android": "npm run build && npx cap sync android && npx cap open android"
@@ -25,6 +25,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.2",
     "typescript": "~5.6.2",
     "vite": "^6.0.3"
   }

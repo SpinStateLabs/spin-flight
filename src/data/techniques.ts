@@ -42,7 +42,7 @@ export const TECHNIQUES: Technique[] = [
     name: 'Alternate airports',
     tagline: 'The cheapest airport is not always the closest one',
     description:
-      'Airports within a ~3 hour drive can price the same route hundreds apart. The catch: parking, gas, and your time are real costs. SpinFlight computes the true door-to-door cost, not the sticker price.',
+      'Airports within a ~3 hour drive can price the same route hundreds apart. The catch: parking, gas, and your time are real costs. Ai2Fly computes the true door-to-door cost, not the sticker price.',
     risk: 'none',
     riskNotes: 'None — just factor the drive honestly.',
     savings: '$50–$300 per trip',

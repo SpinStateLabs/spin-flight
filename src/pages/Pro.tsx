@@ -23,7 +23,7 @@ export default function Pro() {
     <div className="mx-auto max-w-3xl">
       <div className="mb-6 text-center">
         <h1 className="text-3xl font-bold">
-          SpinFlight <span className="text-amber-400">Pro</span>
+          Ai2Fly <span className="text-amber-400">Pro</span>
         </h1>
         <p className="mt-2 text-slate-400">
           One saved flight pays for years of Pro. Serious tools for serious flight hackers.
@@ -70,7 +70,7 @@ export default function Pro() {
       </div>
 
       <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/40 p-5 text-sm text-slate-400">
-        <p className="font-semibold text-slate-300">How SpinFlight makes money</p>
+        <p className="font-semibold text-slate-300">How Ai2Fly makes money</p>
         <ul className="mt-2 list-disc space-y-1 pl-5">
           <li>
             <b>Booking commissions:</b> deal links carry affiliate markers (Aviasales/Travelpayouts, Kiwi) —

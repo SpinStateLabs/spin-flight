@@ -8,6 +8,7 @@ import Stopovers from './pages/Stopovers'
 import Guide from './pages/Guide'
 import Techniques from './pages/Techniques'
 import Pro from './pages/Pro'
+import Agents from './pages/Agents'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/guide" element={<Guide />} />
         <Route path="/techniques" element={<Techniques />} />
         <Route path="/pro" element={<Pro />} />
+        <Route path="/agents" element={<Agents />} />
         <Route path="*" element={<Navigate to="/deals" replace />} />
       </Route>
     </Routes>

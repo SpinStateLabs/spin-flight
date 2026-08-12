@@ -7,12 +7,36 @@
     <meta name="theme-color" content="#0b1220" />
     <meta
       name="description"
-      content="SpinFlight — the flight hacker's toolkit. Hidden deals, price tracking, cheap date grids, airport optimization, and free stopover vacations."
+      content="Ai2Fly — the AI-native flight deal engine. Hidden deals, price tracking, cheap date grids, airport optimization, free stopover vacations — for humans and for AI agents (MCP + JSON API)."
     />
-    <title>SpinFlight — Fly smarter, pay less</title>
+    <title>Ai2Fly — The AI-native flight deal engine</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Ai2Fly",
+      "alternateName": "Ai2Fly Flight Deal Engine",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Web, Android",
+      "description": "AI-native flight deal engine: error fares, flash sales, cheapest date combos, true-cost airport comparison, and free stopover programs. Exposes a machine-readable JSON API (/api/index.json) and an MCP server (/mcp) so AI agents like Claude, ChatGPT, and Gemini can query flight deals directly.",
+      "offers": [
+        { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
+        { "@type": "Offer", "price": "4.99", "priceCurrency": "USD", "name": "Pro (monthly)" }
+      ],
+      "publisher": { "@type": "Organization", "name": "Spin State Labs" }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <h1>Ai2Fly — The AI-native flight deal engine</h1>
+      <p>
+        Flight deals, price tracking, cheapest date combos, true-cost airport comparison, and free
+        stopover programs. AI agents: see <a href="/llms.txt">/llms.txt</a>, the JSON API at
+        <a href="/api/index.json">/api/index.json</a>, or connect over MCP at <code>/mcp</code>.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

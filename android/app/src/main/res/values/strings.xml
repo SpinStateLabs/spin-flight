@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ai2Fly</string>
+    <string name="title_activity_main">Ai2Fly</string>
+    <string name="package_name">com.spinstatelabs.ai2fly</string>
+    <string name="custom_url_scheme">com.spinstatelabs.ai2fly</string>
+</resources>

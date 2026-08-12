@@ -9,7 +9,7 @@ export default function Techniques() {
       <div className="mb-5">
         <h1 className="text-2xl font-bold">Your techniques</h1>
         <p className="mt-1 text-sm text-slate-400">
-          Choose which tactics SpinFlight uses when surfacing deals. Everything is here — from squeaky-clean
+          Choose which tactics Ai2Fly uses when surfacing deals. Everything is here — from squeaky-clean
           date shifting to the gray-area stuff — each with an honest risk rating. Riskier techniques ship
           off by default; what you enable is your call.
         </p>

@@ -30,7 +30,7 @@ export default function Guide() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Flight Hacking 101</h1>
         <p className="mt-1 text-sm text-slate-400">
-          The complete playbook behind SpinFlight — what airlines’ revenue managers hope you never learn,
+          The complete playbook behind Ai2Fly — what airlines’ revenue managers hope you never learn,
           including what can go wrong with each trick.
         </p>
       </div>
