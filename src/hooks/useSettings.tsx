@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, type ReactNode } from 'react'
 import { STRATEGIES } from '../data/strategies'
+import { track } from '../services/analytics'
 import { useLocalStorage } from './useLocalStorage'
 
 interface Settings {
@@ -29,6 +30,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     const params = new URLSearchParams(window.location.search)
     if (params.get('upgraded') === 'pro') {
       setPro(true)
+      track('pro_activated', { method: 'stripe_payment_link' })
       params.delete('upgraded')
       const query = params.toString()
       window.history.replaceState(

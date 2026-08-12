@@ -1,6 +1,8 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useSettings } from '../hooks/useSettings'
 import { HOME_CITIES } from '../data/mock'
+import { trackPageView } from '../services/analytics'
 
 const NAV = [
   { to: '/deals', label: 'Deals', icon: '✈️' },
@@ -13,6 +15,11 @@ const NAV = [
 
 export default function Layout() {
   const { homeCity, setHomeCity, isPro } = useSettings()
+  const location = useLocation()
+
+  useEffect(() => {
+    trackPageView(location.pathname)
+  }, [location.pathname])
 
   return (
     <div className="min-h-dvh flex flex-col">

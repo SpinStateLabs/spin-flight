@@ -1,4 +1,5 @@
 import { useSettings } from '../hooks/useSettings'
+import { track } from '../services/analytics'
 
 // Stripe Payment Links (Spin State Labs sandbox). Override with live-mode
 // links via env vars when the account goes live.
@@ -70,12 +71,14 @@ export default function Pro() {
             <div className="mt-6 space-y-2">
               <a
                 href={STRIPE_LINK_MONTHLY}
+                onClick={() => track('begin_checkout', { plan: 'pro_monthly', value: 4.99, currency: 'USD' })}
                 className="block w-full rounded-xl bg-amber-500 py-3 text-center font-semibold text-slate-950 transition hover:bg-amber-400"
               >
                 Go Pro — $4.99/mo
               </a>
               <a
                 href={STRIPE_LINK_YEARLY}
+                onClick={() => track('begin_checkout', { plan: 'pro_yearly', value: 39, currency: 'USD' })}
                 className="block w-full rounded-xl border border-amber-500/50 py-3 text-center font-semibold text-amber-400 transition hover:bg-amber-500/10"
               >
                 Yearly — $39 (save 35%)

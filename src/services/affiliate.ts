@@ -1,4 +1,5 @@
 import type { Deal } from '../types'
+import { track } from './analytics'
 
 /**
  * Affiliate monetization layer.
@@ -30,6 +31,11 @@ export function buildBookingUrl(deal: Deal, site: string): string {
 }
 
 export function trackAffiliateClick(deal: Deal, site: string): void {
-  // Phase 2: send to analytics (Plausible/GA4) to measure EPC per site.
-  console.info('[affiliate] click', { route: `${deal.originCode}-${deal.destinationCode}`, site })
+  track('affiliate_click', {
+    site,
+    route: `${deal.originCode}-${deal.destinationCode}`,
+    price: deal.price,
+    live_price: deal.live === true,
+    strategies: deal.strategyIds.join(','),
+  })
 }

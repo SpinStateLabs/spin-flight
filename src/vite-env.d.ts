@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_FLIGHT_PROVIDER?: string
   readonly VITE_STRIPE_LINK_MONTHLY?: string
   readonly VITE_STRIPE_LINK_YEARLY?: string
+  readonly VITE_GA_MEASUREMENT_ID?: string
 }
 
 interface ImportMeta {
