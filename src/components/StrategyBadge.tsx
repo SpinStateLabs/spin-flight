@@ -1,7 +1,7 @@
-import { RISK_COLOR, techniqueById } from '../data/techniques'
+import { RISK_COLOR, strategyById } from '../data/strategies'
 
-export default function TechniqueBadge({ id }: { id: string }) {
-  const t = techniqueById(id)
+export default function StrategyBadge({ id }: { id: string }) {
+  const t = strategyById(id)
   if (!t) return null
   return (
     <span

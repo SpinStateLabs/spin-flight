@@ -6,7 +6,7 @@ import CheapDates from './pages/CheapDates'
 import Airports from './pages/Airports'
 import Stopovers from './pages/Stopovers'
 import Guide from './pages/Guide'
-import Techniques from './pages/Techniques'
+import Strategies from './pages/Strategies'
 import Pro from './pages/Pro'
 import Agents from './pages/Agents'
 
@@ -21,7 +21,8 @@ export default function App() {
         <Route path="/airports" element={<Airports />} />
         <Route path="/stopovers" element={<Stopovers />} />
         <Route path="/guide" element={<Guide />} />
-        <Route path="/techniques" element={<Techniques />} />
+        <Route path="/strategies" element={<Strategies />} />
+        <Route path="/techniques" element={<Navigate to="/strategies" replace />} />
         <Route path="/pro" element={<Pro />} />
         <Route path="/agents" element={<Agents />} />
         <Route path="*" element={<Navigate to="/deals" replace />} />

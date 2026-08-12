@@ -42,11 +42,11 @@ export default function Layout() {
             </label>
 
             <NavLink
-              to="/techniques"
+              to="/strategies"
               className="rounded-lg border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-500"
-              title="Choose which techniques SpinFlight uses"
+              title="Choose which strategies Ai2Fly uses"
             >
-              ⚙️ Techniques
+              ⚙️ Strategies
             </NavLink>
 
             <NavLink
@@ -89,7 +89,7 @@ export default function Layout() {
           Ai2Fly by Spin State Labs · Prices are simulated demo data (live API coming in Phase 2).
         </p>
         <p className="mt-1">
-          Some techniques violate airline contracts of carriage — each carries its risk rating. Fly informed.
+          Some strategies violate airline contracts of carriage — each carries its risk rating. Fly informed.
         </p>
         <p className="mt-1">
           🤖 AI agent?{' '}

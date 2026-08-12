@@ -77,7 +77,7 @@ const BOOKING_SITES = [
   'Aviasales', 'Kiwi.com', 'Skyscanner', 'Momondo', 'Airline direct', 'Google Flights',
 ]
 
-const DEAL_TECHNIQUES: { ids: string[]; weight: number }[] = [
+const DEAL_STRATEGIES: { ids: string[]; weight: number }[] = [
   { ids: ['error-fares'], weight: 2 },
   { ids: ['flash-sales'], weight: 4 },
   { ids: ['date-shifting'], weight: 5 },
@@ -90,6 +90,8 @@ const DEAL_TECHNIQUES: { ids: string[]; weight: number }[] = [
   { ids: ['throwaway'], weight: 1 },
   { ids: ['fuel-dump'], weight: 1 },
   { ids: ['currency-arbitrage'], weight: 1 },
+  { ids: ['geo-masking'], weight: 1 },
+  { ids: ['geo-masking', 'currency-arbitrage'], weight: 1 },
 ]
 
 function pick<T>(rand: () => number, arr: T[]): T {
@@ -97,13 +99,13 @@ function pick<T>(rand: () => number, arr: T[]): T {
 }
 
 function weightedPick(rand: () => number): string[] {
-  const total = DEAL_TECHNIQUES.reduce((s, d) => s + d.weight, 0)
+  const total = DEAL_STRATEGIES.reduce((s, d) => s + d.weight, 0)
   let r = rand() * total
-  for (const d of DEAL_TECHNIQUES) {
+  for (const d of DEAL_STRATEGIES) {
     r -= d.weight
     if (r <= 0) return d.ids
   }
-  return DEAL_TECHNIQUES[0].ids
+  return DEAL_STRATEGIES[0].ids
 }
 
 function fmtDate(d: Date): string {
@@ -124,9 +126,9 @@ export function generateDeals(originCode: string, count = 24): Deal[] {
     if (used.has(key)) continue
     used.add(key)
 
-    const techniqueIds = weightedPick(rand)
-    // riskier techniques cut deeper
-    const risky = techniqueIds.some((t) =>
+    const strategyIds = weightedPick(rand)
+    // riskier strategies cut deeper
+    const risky = strategyIds.some((t) =>
       ['hidden-city', 'fuel-dump', 'error-fares', 'throwaway'].includes(t),
     )
     const discount = risky ? 0.35 + rand() * 0.3 : 0.15 + rand() * 0.3
@@ -155,7 +157,7 @@ export function generateDeals(originCode: string, count = 24): Deal[] {
       departDate: fmtDate(depart),
       returnDate: fmtDate(ret),
       airline: pick(rand, AIRLINES),
-      techniqueIds,
+      strategyIds,
       bookingSites: sites,
       expiresHours: 4 + Math.floor(rand() * 68),
     })

@@ -12,13 +12,13 @@ Built with **React + Vite + Tailwind**, wrapped with **Capacitor** for the Play 
 
 | Tab | What it does |
 | --- | --- |
-| **Deals** | Feed of error fares, flash sales, and hacker-fare routings from your home city, filtered to the techniques you've enabled |
+| **Deals** | Feed of error fares, flash sales, and hacker-fare routings from your home city, filtered to the strategies you've enabled |
 | **Tracker** | Watch routes with a target price; 30-day sparkline history and Tue/Wed repricing tips (free tier: 2 routes, Pro: unlimited) |
 | **Dates** | The 10 cheapest round-trip date combos for a route/month — Tue/Wed departures, redeyes, and the exact delta vs. peak weekend pricing |
 | **Airports** | Every airport within ~3h of home, ranked by *true* cost: fare + gas + parking + your time |
 | **Stopovers** | Free stopover programs (Turkish, Icelandair, Qatar, Singapore, TAP, Emirates, Finnair) incl. who pays for your hotel |
-| **Guide** | Flight Hacking 101 — every technique explained and honestly risk-rated |
-| **⚙️ Techniques** | The user picks which tactics the app surfaces — from clean date shifting to hidden-city/fuel dumps. Risky ones ship OFF by default and always carry risk warnings |
+| **Guide** | Flight Hacking 101 — every strategy explained and honestly risk-rated |
+| **⚙️ Strategies** | The user picks which tactics the app surfaces — from clean date shifting to hidden-city/fuel dumps. Risky ones ship OFF by default and always carry risk warnings |
 | **Pro** | Freemium upsell: $4.99/mo or $39/yr (demo stub — see Monetization) |
 | **🤖 Agents** | Integration page for AI agents: MCP config, REST endpoints, etiquette |
 
@@ -28,9 +28,9 @@ Ai2Fly is designed to be discovered and queried by AI assistants:
 
 - **`/mcp`** — a stateless MCP server (Streamable HTTP, Netlify Function) with five tools:
   `search_flight_deals`, `get_cheapest_dates`, `compare_airports`, `list_stopover_programs`,
-  `list_techniques`. Connect from Claude Code: `claude mcp add --transport http ai2fly <site>/mcp`
+  `list_strategies`. Connect from Claude Code: `claude mcp add --transport http ai2fly <site>/mcp`
 - **`/api/*.json`** — static JSON generated at build time (`scripts/generate-agent-api.ts`):
-  deal feeds per origin, stopovers, techniques, plus an OpenAPI 3.1 spec at `/api/openapi.json`
+  deal feeds per origin, stopovers, strategies, plus an OpenAPI 3.1 spec at `/api/openapi.json`
 - **`/llms.txt`** — llms.txt-standard guide for LLM crawlers
 - **`/robots.txt`** — explicitly welcomes GPTBot, ClaudeBot, Google-Extended, Gemini, Perplexity
 - **`/.well-known/agent-card.json`** — agent discovery card
@@ -106,7 +106,7 @@ Play Store checklist:
 
 ## Compliance notes
 
-Gray-area techniques (hidden-city, throwaway, fuel dumping, currency arbitrage) are **off by default**
+Gray-area strategies (hidden-city, throwaway, fuel dumping, currency arbitrage) are **off by default**
 for humans and **excluded from agent results unless `include_risky=true`**, clearly risk-labeled, and
 presented as information — the app never books or automates them. Affiliate deep links are only
 generated for conventional bookings, keeping affiliate-program ToS intact.

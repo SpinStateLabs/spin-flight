@@ -1,9 +1,9 @@
-import type { Technique } from '../types'
+import type { Strategy } from '../types'
 
 // Every tactic from the "flight hacking" playbook. Users choose which ones the
-// app surfaces (Settings → Techniques). Risky ones ship OFF by default and
+// app surfaces (Settings → Strategies). Risky ones ship OFF by default and
 // always carry their risk notes wherever they appear.
-export const TECHNIQUES: Technique[] = [
+export const STRATEGIES: Strategy[] = [
   {
     id: 'error-fares',
     name: 'Error fares & mistake pricing',
@@ -115,6 +115,17 @@ export const TECHNIQUES: Technique[] = [
     defaultOn: false,
   },
   {
+    id: 'geo-masking',
+    name: 'Geo-blocking bypass & IP masking',
+    tagline: 'See the fares airlines show other countries',
+    description:
+      'Airlines and OTAs price the same seat differently by country and geo-block the cheaper storefronts. Browsing through a VPN or proxy from another region — often paired with that country’s point of sale — reveals region-only fares and promotions your home IP never sees.',
+    risk: 'medium',
+    riskNotes: 'Not illegal, but many airlines’ terms prohibit point-of-sale circumvention; bookings can be re-priced or cancelled if the payment card, billing address, or residency doesn’t match the storefront. Some regional fares legally require local residency. Clear cookies, compare in incognito, and pay with a no-foreign-fee card.',
+    savings: '5–25% off',
+    defaultOn: false,
+  },
+  {
     id: 'currency-arbitrage',
     name: 'Currency arbitrage',
     tagline: 'Pay in the currency where the fare is cheapest',
@@ -127,8 +138,8 @@ export const TECHNIQUES: Technique[] = [
   },
 ]
 
-export const techniqueById = (id: string): Technique | undefined =>
-  TECHNIQUES.find((t) => t.id === id)
+export const strategyById = (id: string): Strategy | undefined =>
+  STRATEGIES.find((t) => t.id === id)
 
 export const RISK_LABEL: Record<string, string> = {
   none: 'No risk',

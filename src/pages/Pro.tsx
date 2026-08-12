@@ -8,7 +8,7 @@ const STRIPE_LINK_YEARLY =
   import.meta.env.VITE_STRIPE_LINK_YEARLY ?? 'https://buy.stripe.com/test_8x26oH0TD41c63H9oe7EQ01'
 
 const FREE = [
-  'Deal feed with your enabled techniques',
+  'Deal feed with your enabled strategies',
   '2 tracked routes',
   'Cheap date grids & airport optimizer',
   'Flight Hacking 101 guide',

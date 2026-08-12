@@ -1,23 +1,23 @@
-import { RISK_COLOR, RISK_LABEL, TECHNIQUES } from '../data/techniques'
+import { RISK_COLOR, RISK_LABEL, STRATEGIES } from '../data/strategies'
 import { useSettings } from '../hooks/useSettings'
 
-export default function Techniques() {
-  const { enabledTechniques, toggleTechnique } = useSettings()
+export default function Strategies() {
+  const { enabledStrategies, toggleStrategy } = useSettings()
 
   return (
     <div>
       <div className="mb-5">
-        <h1 className="text-2xl font-bold">Your techniques</h1>
+        <h1 className="text-2xl font-bold">Your strategies</h1>
         <p className="mt-1 text-sm text-slate-400">
           Choose which tactics Ai2Fly uses when surfacing deals. Everything is here — from squeaky-clean
-          date shifting to the gray-area stuff — each with an honest risk rating. Riskier techniques ship
+          date shifting to the gray-area stuff — each with an honest risk rating. Riskier strategies ship
           off by default; what you enable is your call.
         </p>
       </div>
 
       <div className="space-y-3">
-        {TECHNIQUES.map((t) => {
-          const on = enabledTechniques.includes(t.id)
+        {STRATEGIES.map((t) => {
+          const on = enabledStrategies.includes(t.id)
           return (
             <div
               key={t.id}
@@ -30,7 +30,7 @@ export default function Techniques() {
                   role="switch"
                   aria-checked={on}
                   aria-label={`Toggle ${t.name}`}
-                  onClick={() => toggleTechnique(t.id)}
+                  onClick={() => toggleStrategy(t.id)}
                   className={`relative mt-1 h-6 w-11 shrink-0 rounded-full transition ${
                     on ? 'bg-sky-500' : 'bg-slate-700'
                   }`}

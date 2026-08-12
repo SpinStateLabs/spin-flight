@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { RISK_COLOR, RISK_LABEL, TECHNIQUES } from '../data/techniques'
+import { RISK_COLOR, RISK_LABEL, STRATEGIES } from '../data/strategies'
 
 const PLAYBOOK = [
   {
@@ -20,7 +20,7 @@ const PLAYBOOK = [
   },
   {
     title: 'Know the gray zone before you step in it',
-    body: 'Hidden-city, throwaway, fuel dumps and point-of-sale tricks save real money and carry real consequences. Read each technique’s risk card and decide with open eyes — never on an airline where you hold status or miles you care about.',
+    body: 'Hidden-city, throwaway, fuel dumps and point-of-sale tricks save real money and carry real consequences. Read each strategy’s risk card and decide with open eyes — never on an airline where you hold status or miles you care about.',
   },
 ]
 
@@ -48,9 +48,9 @@ export default function Guide() {
         ))}
       </ol>
 
-      <h2 className="mb-3 text-lg font-semibold text-sky-300">Every technique, honestly rated</h2>
+      <h2 className="mb-3 text-lg font-semibold text-sky-300">Every strategy, honestly rated</h2>
       <div className="space-y-3">
-        {TECHNIQUES.map((t) => (
+        {STRATEGIES.map((t) => (
           <details key={t.id} className="group rounded-2xl border border-slate-800 bg-slate-900/50 p-4">
             <summary className="flex cursor-pointer list-none flex-wrap items-center gap-2">
               <span className="font-semibold">{t.name}</span>
@@ -71,9 +71,9 @@ export default function Guide() {
       </div>
 
       <div className="mt-8 rounded-2xl border border-sky-500/20 bg-sky-500/5 p-5 text-sm text-slate-300">
-        Ready to put it to work? Turn techniques on or off in{' '}
-        <Link to="/techniques" className="font-semibold text-sky-400 hover:underline">
-          ⚙️ Techniques
+        Ready to put it to work? Turn strategies on or off in{' '}
+        <Link to="/strategies" className="font-semibold text-sky-400 hover:underline">
+          ⚙️ Strategies
         </Link>{' '}
         and the deal feed reshapes itself around your risk appetite.
       </div>

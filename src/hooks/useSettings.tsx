@@ -1,24 +1,24 @@
 import { createContext, useContext, useEffect, type ReactNode } from 'react'
-import { TECHNIQUES } from '../data/techniques'
+import { STRATEGIES } from '../data/strategies'
 import { useLocalStorage } from './useLocalStorage'
 
 interface Settings {
   homeCity: string
   setHomeCity: (code: string) => void
-  enabledTechniques: string[]
-  toggleTechnique: (id: string) => void
+  enabledStrategies: string[]
+  toggleStrategy: (id: string) => void
   isEnabled: (id: string) => boolean
   isPro: boolean
   setPro: (v: boolean) => void
 }
 
-const defaultEnabled = TECHNIQUES.filter((t) => t.defaultOn).map((t) => t.id)
+const defaultEnabled = STRATEGIES.filter((t) => t.defaultOn).map((t) => t.id)
 
 const SettingsContext = createContext<Settings | null>(null)
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [homeCity, setHomeCity] = useLocalStorage('sf.homeCity', 'ATL')
-  const [enabledTechniques, setEnabled] = useLocalStorage<string[]>('sf.techniques', defaultEnabled)
+  const [enabledStrategies, setEnabled] = useLocalStorage<string[]>('sf.strategies', defaultEnabled)
   // Pro flag lives in localStorage. Stripe Payment Links redirect back with
   // ?upgraded=pro after checkout, which flips it. This is convenience-grade
   // gating for the static site — Phase 2 adds accounts + webhook-verified
@@ -40,14 +40,14 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const toggleTechnique = (id: string) =>
+  const toggleStrategy = (id: string) =>
     setEnabled((prev) => (prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]))
 
-  const isEnabled = (id: string) => enabledTechniques.includes(id)
+  const isEnabled = (id: string) => enabledStrategies.includes(id)
 
   return (
     <SettingsContext.Provider
-      value={{ homeCity, setHomeCity, enabledTechniques, toggleTechnique, isEnabled, isPro, setPro }}
+      value={{ homeCity, setHomeCity, enabledStrategies, toggleStrategy, isEnabled, isPro, setPro }}
     >
       {children}
     </SettingsContext.Provider>

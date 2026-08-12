@@ -4,10 +4,10 @@ import type { Deal } from '../types'
 import { flightProvider } from '../services/flightProvider'
 import { useSettings } from '../hooks/useSettings'
 import DealCard from '../components/DealCard'
-import { TECHNIQUES } from '../data/techniques'
+import { STRATEGIES } from '../data/strategies'
 
 export default function Deals() {
-  const { homeCity, enabledTechniques } = useSettings()
+  const { homeCity, enabledStrategies } = useSettings()
   const [deals, setDeals] = useState<Deal[]>([])
   const [maxPrice, setMaxPrice] = useState(1000)
   const [loading, setLoading] = useState(true)
@@ -29,13 +29,13 @@ export default function Deals() {
   const visible = useMemo(
     () =>
       deals.filter(
-        (d) => d.price <= maxPrice && d.techniqueIds.every((t) => enabledTechniques.includes(t)),
+        (d) => d.price <= maxPrice && d.strategyIds.every((t) => enabledStrategies.includes(t)),
       ),
-    [deals, maxPrice, enabledTechniques],
+    [deals, maxPrice, enabledStrategies],
   )
 
   const hiddenCount = deals.filter((d) => d.price <= maxPrice).length - visible.length
-  const offCount = TECHNIQUES.length - enabledTechniques.length
+  const offCount = STRATEGIES.length - enabledStrategies.length
 
   return (
     <div>
@@ -63,8 +63,8 @@ export default function Deals() {
         {offCount > 0 && (
           <span className="text-xs text-slate-500">
             {hiddenCount > 0 && <>{hiddenCount} deal{hiddenCount === 1 ? '' : 's'} hidden · </>}
-            {offCount} technique{offCount === 1 ? '' : 's'} off —{' '}
-            <Link to="/techniques" className="text-sky-400 hover:underline">
+            {offCount} strategy{offCount === 1 ? '' : 's'} off —{' '}
+            <Link to="/strategies" className="text-sky-400 hover:underline">
               manage
             </Link>
           </span>
@@ -76,8 +76,8 @@ export default function Deals() {
       ) : visible.length === 0 ? (
         <p className="text-slate-500">
           No deals match. Raise the price cap or enable more{' '}
-          <Link to="/techniques" className="text-sky-400 hover:underline">
-            techniques
+          <Link to="/strategies" className="text-sky-400 hover:underline">
+            strategies
           </Link>
           .
         </p>

@@ -1,6 +1,6 @@
 import type { Deal } from '../types'
 import { buildBookingUrl, trackAffiliateClick } from '../services/affiliate'
-import TechniqueBadge from './TechniqueBadge'
+import StrategyBadge from './StrategyBadge'
 
 function fmtDay(iso: string): string {
   return new Date(iso + 'T12:00:00').toLocaleDateString(undefined, {
@@ -35,8 +35,8 @@ export default function DealCard({ deal }: { deal: Deal }) {
       </div>
 
       <div className="mt-3 flex flex-wrap gap-1.5">
-        {deal.techniqueIds.map((id) => (
-          <TechniqueBadge key={id} id={id} />
+        {deal.strategyIds.map((id) => (
+          <StrategyBadge key={id} id={id} />
         ))}
       </div>
 

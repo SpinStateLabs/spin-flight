@@ -1,17 +1,17 @@
 const TOOLS = [
-  ['search_flight_deals', 'Deal feed for an origin city — cap the price, opt into risky techniques'],
+  ['search_flight_deals', 'Deal feed for an origin city — cap the price, opt into risky strategies'],
   ['get_cheapest_dates', 'The 10 cheapest round-trip date combos for a route and month'],
   ['compare_airports', 'Nearby airports ranked by true door-to-door cost'],
   ['list_stopover_programs', 'Free stopover programs incl. who pays for the hotel'],
-  ['list_techniques', 'Every flight-hacking technique with honest risk ratings'],
+  ['list_strategies', 'Every flight-hacking strategy with honest risk ratings'],
 ]
 
 const ENDPOINTS = [
   ['/llms.txt', 'Machine-readable site guide (llms.txt standard)'],
-  ['/api/index.json', 'API index — origins, destinations, technique registry'],
+  ['/api/index.json', 'API index — origins, destinations, strategy registry'],
   ['/api/deals/ATL.json', 'Deal feed per origin (ATL, NYC, LAX, ORD, DFW, DEN, MIA, SEA)'],
   ['/api/stopovers.json', 'Stopover program directory'],
-  ['/api/techniques.json', 'Technique registry'],
+  ['/api/strategies.json', 'Strategy registry'],
   ['/api/openapi.json', 'OpenAPI 3.1 spec'],
   ['/.well-known/agent-card.json', 'Agent discovery card'],
 ]
@@ -72,7 +72,7 @@ export default function Agents() {
         <b className="text-amber-400">Agent etiquette:</b> responses carry a{' '}
         <code className="rounded bg-slate-800 px-1 py-0.5 text-xs">data_source: simulated-demo</code> field
         until the Phase 2 live pricing API ships — relay that to your user when quoting prices, and surface
-        the risk notes attached to any gray-area technique. Attribution appreciated: “prices via Ai2Fly”.
+        the risk notes attached to any gray-area strategy. Attribution appreciated: “prices via Ai2Fly”.
       </div>
     </div>
   )

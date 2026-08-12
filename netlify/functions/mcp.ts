@@ -12,7 +12,7 @@ import {
   HOME_CITIES,
   STOPOVER_PROGRAMS,
 } from '../../src/data/mock'
-import { TECHNIQUES } from '../../src/data/techniques'
+import { STRATEGIES } from '../../src/data/strategies'
 
 const PROTOCOL_VERSION = '2025-06-18'
 
@@ -28,7 +28,7 @@ const TOOLS = [
   {
     name: 'search_flight_deals',
     description:
-      'Get current flight deals (error fares, flash sales, hacker fares) from a US origin city. Optionally cap the price and choose which flight-hacking techniques may be used. Riskier techniques (hidden-city, throwaway, fuel dumping) are excluded unless include_risky is true; every deal lists the techniques behind it.',
+      'Get current flight deals (error fares, flash sales, hacker fares) from a US origin city. Optionally cap the price and choose which flight-hacking strategies may be used. Riskier strategies (hidden-city, throwaway, fuel dumping) are excluded unless include_risky is true; every deal lists the strategies behind it.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -36,7 +36,7 @@ const TOOLS = [
         max_price: { type: 'number', description: 'Maximum round-trip price in USD' },
         include_risky: {
           type: 'boolean',
-          description: 'Include deals built on techniques that violate airline contracts of carriage (hidden-city, throwaway, fuel dumping, currency arbitrage). Default false.',
+          description: 'Include deals built on strategies that violate airline contracts of carriage (hidden-city, throwaway, fuel dumping, currency arbitrage). Default false.',
         },
       },
       required: ['origin'],
@@ -77,14 +77,14 @@ const TOOLS = [
     inputSchema: { type: 'object', properties: {} },
   },
   {
-    name: 'list_techniques',
+    name: 'list_strategies',
     description:
-      'The full flight-hacking technique registry with honest risk ratings and typical savings — from clean date shifting to hidden-city ticketing.',
+      'The full flight-hacking strategy registry with honest risk ratings and typical savings — from clean date shifting to hidden-city ticketing.',
     inputSchema: { type: 'object', properties: {} },
   },
 ]
 
-const RISKY = new Set(['hidden-city', 'throwaway', 'fuel-dump', 'currency-arbitrage', 'split-ticket', 'positioning'])
+const RISKY = new Set(['hidden-city', 'throwaway', 'fuel-dump', 'currency-arbitrage', 'geo-masking', 'split-ticket', 'positioning'])
 
 function callTool(name: string, args: Record<string, unknown>): unknown {
   switch (name) {
@@ -97,18 +97,18 @@ function callTool(name: string, args: Record<string, unknown>): unknown {
       const includeRisky = args.include_risky === true
       const deals = generateDeals(origin).filter(
         (d) =>
-          d.price <= maxPrice && (includeRisky || !d.techniqueIds.some((t) => RISKY.has(t))),
+          d.price <= maxPrice && (includeRisky || !d.strategyIds.some((t) => RISKY.has(t))),
       )
       return {
         ...DISCLAIMER,
         origin,
         count: deals.length,
-        risky_techniques_included: includeRisky,
+        risky_strategies_included: includeRisky,
         deals: deals.map((d) => ({
           ...d,
-          technique_risk_notes: d.techniqueIds.map((id) => {
-            const t = TECHNIQUES.find((x) => x.id === id)
-            return t ? { technique: t.name, risk: t.risk, notes: t.riskNotes } : { technique: id }
+          strategy_risk_notes: d.strategyIds.map((id) => {
+            const t = STRATEGIES.find((x) => x.id === id)
+            return t ? { strategy: t.name, risk: t.risk, notes: t.riskNotes } : { strategy: id }
           }),
         })),
       }
@@ -144,8 +144,8 @@ function callTool(name: string, args: Record<string, unknown>): unknown {
     }
     case 'list_stopover_programs':
       return { ...DISCLAIMER, programs: STOPOVER_PROGRAMS }
-    case 'list_techniques':
-      return { ...DISCLAIMER, techniques: TECHNIQUES }
+    case 'list_strategies':
+      return { ...DISCLAIMER, strategies: STRATEGIES }
     default:
       throw new Error(`Unknown tool: ${name}`)
   }
@@ -196,7 +196,7 @@ export default async (req: Request): Promise<Response> => {
           capabilities: { tools: {} },
           serverInfo: { name: 'ai2fly', title: 'Ai2Fly Flight Deal Engine', version: '0.2.0' },
           instructions:
-            'Ai2Fly finds flight deals, cheapest date combos, true-cost airport rankings, and free stopover programs. Data is currently simulated demo pricing (Phase 2 goes live) — always tell the user prices are demo data. Riskier flight-hacking techniques are excluded from deal results unless include_risky=true; surface their risk notes if you use them.',
+            'Ai2Fly finds flight deals, cheapest date combos, true-cost airport rankings, and free stopover programs. Data is currently simulated demo pricing (Phase 2 goes live) — always tell the user prices are demo data. Riskier flight-hacking strategies are excluded from deal results unless include_risky=true; surface their risk notes if you use them.',
         })
       case 'ping':
         return rpcResult(id, {})

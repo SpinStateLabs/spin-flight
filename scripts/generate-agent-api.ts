@@ -11,7 +11,7 @@ import {
   HOME_CITIES,
   STOPOVER_PROGRAMS,
 } from '../src/data/mock'
-import { TECHNIQUES } from '../src/data/techniques'
+import { STRATEGIES } from '../src/data/strategies'
 
 const OUT = join(process.cwd(), 'dist', 'api')
 mkdirSync(join(OUT, 'deals'), { recursive: true })
@@ -35,7 +35,7 @@ write('index.json', {
   endpoints: [
     { path: '/api/deals/{origin}.json', description: 'Deal feed per origin city code' },
     { path: '/api/stopovers.json', description: 'Free stopover program directory' },
-    { path: '/api/techniques.json', description: 'Flight-hacking technique registry with risk ratings' },
+    { path: '/api/strategies.json', description: 'Flight-hacking strategy registry with risk ratings' },
     { path: '/api/openapi.json', description: 'OpenAPI 3.1 spec' },
   ],
   origins: HOME_CITIES,
@@ -51,7 +51,7 @@ for (const city of HOME_CITIES) {
 }
 
 write('stopovers.json', { ...meta, programs: STOPOVER_PROGRAMS })
-write('techniques.json', { ...meta, techniques: TECHNIQUES })
+write('strategies.json', { ...meta, strategies: STRATEGIES })
 
 write('openapi.json', {
   openapi: '3.1.0',
@@ -83,8 +83,8 @@ write('openapi.json', {
     '/api/stopovers.json': {
       get: { summary: 'Free stopover programs', responses: { '200': { description: 'OK' } } },
     },
-    '/api/techniques.json': {
-      get: { summary: 'Technique registry with risk ratings', responses: { '200': { description: 'OK' } } },
+    '/api/strategies.json': {
+      get: { summary: 'Strategy registry with risk ratings', responses: { '200': { description: 'OK' } } },
     },
   },
 })

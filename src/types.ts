@@ -1,6 +1,6 @@
 export type RiskLevel = 'none' | 'low' | 'medium' | 'high'
 
-export interface Technique {
+export interface Strategy {
   id: string
   name: string
   tagline: string
@@ -30,7 +30,7 @@ export interface Deal {
   departDate: string
   returnDate: string
   airline: string
-  techniqueIds: string[]
+  strategyIds: string[]
   bookingSites: string[]
   expiresHours: number
 }
